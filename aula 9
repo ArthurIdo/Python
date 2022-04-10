@@ -1,0 +1,9 @@
+lista = ('Arroz', 'Batata', 'Tomate', 'Feijão', 'Alface')
+
+def criar_lista_compras(lista):
+    open('arquivo.txt', 'a')
+    for item in lista:
+      open('arquivo.txt', 'a').write(item)
+    return
+
+criar_lista_compras(lista)
