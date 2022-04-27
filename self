@@ -1,7 +1,7 @@
 #dados
 
 
-email = int(input('Digite seu email '))
+email = input('Digite seu email ')
 senha = input('Digite sua senha ')
 
 class contaRiot:
