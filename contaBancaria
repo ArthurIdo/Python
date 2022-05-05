@@ -1,0 +1,46 @@
+#metodo construtor
+class contaBancaria():
+    def init(self, nome, senha, saldo):
+       self.nome = nome
+       self.senha = senha
+       self.saldo = int(saldo)
+
+#getters e setters nome
+    def getNome(self):
+        return self.nome
+
+    def setNome(self, nome):
+        self.nome = nome
+
+#getters e setters senha
+    def getSenha(self):
+        return self.senha
+
+    def setSenha(self, senha):
+        self.senha = senha
+
+#getters e setters saldo
+    def getSaldo(self):
+        return self.saldo
+
+    def setSaldo(self, saldo):
+        self.saldo = int(saldo)
+
+
+#operações
+    def sacarDinheiro(self, valorSaque):
+        if (valorSaque > self.getSaldo()):
+            print(f'erro! Voce tentou sacar {valorSaque} enquanto sua conta possui {self.getSaldo}')
+        else:
+            self.saldo = self.saldo - valorSaque
+            print(f'muito bem, senhor {self.getNome()}, foram sacados {valorSaque} restando {self.getSaldo()}')
+
+
+
+contaArthur = contaBancaria('Arthur', 123, 100000000000000)
+
+contaArthur.sacarDinheiro(999999999999)
+
+print(contaArthur.nome)
+print(contaArthur.senha)
+print(contaArthur.saldo)
