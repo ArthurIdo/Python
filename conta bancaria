@@ -1,0 +1,105 @@
+#contaCliente.py
+
+#Importar arquivo Pessoa.py
+from Pessoa import Pessoa
+
+#metodo construtor
+class ClienteBanco(Pessoa):
+    def __init__(self, nome, cpf, nascimento, senha, saldo):
+       Pessoa.__init__(self, nome, cpf, nascimento)
+       self.senha = senha
+       self.saldo = int(saldo)
+
+
+#getters e setters senha
+    def getSenha(self):
+        return self.senha
+
+    def setSenha(self, senha):
+        self.senha = senha
+
+#getters e setters saldo
+    def getSaldo(self):
+        return self.saldo
+
+    def setSaldo(self, saldo):
+        self.saldo = int(saldo)
+
+
+#operações
+    def sacarDinheiro(self, valorSaque):
+        if (valorSaque > self.getSaldo()):
+            print(f'erro! Voce tentou sacar {valorSaque} enquanto sua conta possui {self.getSaldo}')
+        else:
+            self.saldo = self.saldo - valorSaque
+            print(f'muito bem senhor {self.getNome()}, foram sacados {valorSaque} restando {self.getSaldo()}')
+            
+ 
+ #Pessoa.py
+            
+    #Metodo construtor
+class Pessoa():
+    def __init__(self, nome, cpf, nascimento):
+        self.nome = nome
+        self.cpf = cpf
+        self.nascimento = nascimento
+#-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
+#_________________Nome_____________________
+    def getNome(self):
+        return self.nome
+
+    def setNome(self, nome):
+        self.nome = nome
+#_________________Cpf_____________________
+    def getCpf(self):
+        return self.cpf
+
+    def setCpf(self, cpf):
+        self.cpf = cpf
+
+#______________Nascimento_________________
+    def getNascimento(self):
+        return self.nascimento
+
+    def setNascimento(self, nascimento):
+        self.nascimento = nascimento
+#-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-    
+
+
+#Funcionario.py
+
+#Importar arquivo Pessoa.py
+from Pessoa import Pessoa
+
+#Metodo construtor
+class Funcionario(Pessoa):
+    def __init__(self,nome, cpf, nascimento, funcao, setor):
+        Pessoa.__init__(self,nome, cpf, nascimento)
+        self.funcao = funcao
+        self.setor = setor
+#-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
+#_________________Função____________________
+    def getFuncao(self):
+        return self.funcao
+
+    def setFuncao(self, valor):
+        self.funcao = valor
+
+#_________________Setor_____________________
+    def getSetor(self):
+        return self.setor
+
+    def setSetor(self, valor):
+        self.setor = valor
+#-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
+#main.py
+
+from Funcionario import Funcionario
+from contaCliente import ClienteBanco
+
+contaArthur = ClienteBanco('Arthur', '423.342.342-34', '26/03/2005', '123', 1000)
+
+contaArthur.sacarDinheiro(500)
