@@ -1,0 +1,43 @@
+import requests as r
+from bs4 import BeautifulSoup as bs
+
+try:
+    resultado = r.get('https://g1.globo.com/')
+
+except Exception as erro:
+    print(erro)
+
+else:
+    conteudo = bs(resultado.text, 'html.parser')
+
+    links = conteudo.find_all('div')
+
+    #placar de pontos
+    placar_politica = 0
+    placar_futebol = 0
+    placar_policial = 0
+
+    #tópicos
+    lista_politica = ['Bolsonaro', 'Eleição', 'Guerra', 'Biden', 'Dolar', 'Inflação']
+    lista_futebol = ['Cristiano Ronaldo', 'Contratação', 'Daniel', 'Copa', 'Campeonato', 'Messi', 'Barcelona', 'Alves']
+    lista_policial = ['Investigação', 'Apreensão', 'Busca', 'Droga', 'Policia', 'Foragido', 'Bruno', 'Dom', 'Desaparecido', 'Denunciou']
+
+    #politica
+    for link in links:
+        for assunto in lista_politica:
+            if assunto.upper() in str(link).upper():
+                placar_politica = placar_politica + 1
+
+    #futebol
+        for assunto in lista_futebol:
+            if assunto.upper() in str(link).upper():
+                placar_futebol = placar_futebol + 1
+
+    #policial
+        for assunto in lista_policial:
+            if assunto.upper() in str(link).upper():
+                placar_policial = placar_policial + 1
+
+    print(f'O placar para Politica é: {placar_politica}')
+    print(f'O placar para Futebol é: {placar_futebol}')
+    print(f'O placar para Policia é: {placar_policial}')
